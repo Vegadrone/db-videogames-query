@@ -57,7 +57,18 @@ WHERE reviews.rating = 4 OR reviews.rating = 5
 7. Selezionare quali giochi erano presenti nei tornei nei quali hanno partecipato i giocatori il cui nome inizia per 'S' (474)
 
 
-8. Selezionare le cittÃ  in cui Ã¨ stato giocato il gioco dell'anno del 2018 (36)
-
+8. Selezionare le città in cui è stato giocato il gioco dell'anno del 2018 (36)
+SELECT tournaments.city
+FROM tournaments
+JOIN tournament_videogame
+    ON tournaments.id = tournament_videogame.tournament_id
+JOIN videogames
+    ON tournament_videogame.videogame_id = videogames.id
+JOIN award_videogame
+	ON videogames.id = award_videogame.videogame_id
+JOIN awards
+	ON award_videogame.award_id = awards.id
+WHERE awards.name LIKE "Gioco dell'anno"
+	AND award_videogame.year = 2018
 
 9. Selezionare i giocatori che hanno giocato al gioco piÃ¹ atteso del 2018 in un torneo del 2019 (3306)1. Selezionare i dati di tutti giocatori che hanno scritto almeno una recensione, mostrandoli una sola volta (996)
